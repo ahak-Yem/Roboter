@@ -23,8 +23,6 @@
 #define HREF_GPIO_NUM     23
 #define PCLK_GPIO_NUM     22
 
-#define PART_BOUNDARY "123456789000000000000987654321" //TODO: Check if can be deleted
-
 class CameraManager {
 public:
     bool initCamera(); //Init the camera.
