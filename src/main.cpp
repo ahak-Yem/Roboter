@@ -1,12 +1,13 @@
 #include <Arduino.h>
 #include "WifiManager.h"
 #include "CameraManager.h"
+#include "HttpServerHandler.h"
 
 const char* ssid = "Yemen";
 const char* password = "123456789";
-WifiManager wifiManager(ssid, password);//init WifiManager
+WifiManager wifiManager(ssid, password); //init WifiManager
 CameraManager camManager; //init CameraManager
-
+HttpServerHandler httpHandler; //init httpHandler
 void setup() {
     Serial.begin(115200);
     Serial.setDebugOutput(true);
@@ -25,6 +26,7 @@ void setup() {
     } else {
         Serial.println("Failed to connect to Wi-Fi");
     }
+    httpHandler.startServer();
 }
 
 void loop() {
