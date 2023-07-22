@@ -27,8 +27,8 @@
 
 class CameraManager {
 public:
-    bool initCamera();
-    CameraManager();
+    bool initCamera(); //Init the camera.
+    CameraManager(); //Default constructor of the class
 private:
 };
 
