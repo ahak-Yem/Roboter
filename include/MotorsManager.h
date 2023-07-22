@@ -16,8 +16,8 @@ public:
     static const int right_Back;
     static const int right_Forward;
 
-    void controlCar(const char* variable);
     MotorsManager();
+    bool controlCar(const char* variable);
 };
 
 #endif

@@ -11,13 +11,14 @@ MotorsManager::MotorsManager(){
     pinMode(right_Back,OUTPUT);
     pinMode(right_Forward,OUTPUT);
 }
-void MotorsManager::controlCar(const char* variable) {
+bool MotorsManager::controlCar(const char* variable) {
     if (!strcmp(variable, "forward")) {
         Serial.println("Forward");
         digitalWrite(right_Forward, HIGH);
         digitalWrite(left_Back, LOW);
         digitalWrite(left_Forward, HIGH);
         digitalWrite(right_Back, LOW);
+        return true;
     }
     else if (!strcmp(variable, "left")) {
         Serial.println("Left");
@@ -25,6 +26,7 @@ void MotorsManager::controlCar(const char* variable) {
         digitalWrite(left_Back, HIGH);
         digitalWrite(left_Forward, LOW);
         digitalWrite(right_Back, LOW);
+        return true;
     }
     else if (!strcmp(variable, "right")) {
         Serial.println("Right");
@@ -32,6 +34,7 @@ void MotorsManager::controlCar(const char* variable) {
         digitalWrite(left_Back, LOW);
         digitalWrite(left_Forward, HIGH);
         digitalWrite(right_Back, HIGH);
+        return true;
     }
     else if (!strcmp(variable, "backward")) {
         Serial.println("Backward");
@@ -39,6 +42,7 @@ void MotorsManager::controlCar(const char* variable) {
         digitalWrite(left_Back, HIGH);
         digitalWrite(left_Forward, LOW);
         digitalWrite(right_Back, HIGH);
+        return true;
     }
     else if (!strcmp(variable, "stop")) {
         Serial.println("Stop");
@@ -46,5 +50,9 @@ void MotorsManager::controlCar(const char* variable) {
         digitalWrite(left_Back, LOW);
         digitalWrite(left_Forward, LOW);
         digitalWrite(right_Back, LOW);
+        return true;
+    }
+    else{
+        return false;
     }
 }
