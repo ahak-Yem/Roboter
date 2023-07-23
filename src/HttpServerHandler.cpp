@@ -15,19 +15,6 @@ HttpServerHandler::HttpServerHandler()
       WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0); //disable brownout detector
 }
 
-//// Destructor that stops the server when this object is destroyed.
-HttpServerHandler::~HttpServerHandler()
-{    
-    if (cameraHttpd) {
-        httpd_stop(cameraHttpd);
-        cameraHttpd = NULL;
-    }
-    if (streamHttpd) {
-        httpd_stop(streamHttpd);
-        streamHttpd = NULL;
-    }
-}
-
 
 //A motorManager instance that is accessed in the cmd_handler to control the car
 MotorsManager HttpServerHandler::motorManager;

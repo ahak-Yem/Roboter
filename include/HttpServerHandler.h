@@ -7,7 +7,6 @@
 class HttpServerHandler{
     public:
     HttpServerHandler();
-    ~HttpServerHandler();
     void startServer();
 
     private:
