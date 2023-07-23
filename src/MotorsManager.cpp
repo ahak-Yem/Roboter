@@ -20,16 +20,16 @@ bool MotorsManager::controlCar(const char* variable) {
         digitalWrite(right_Back, LOW);
         return true;
     }
-    else if (!strcmp(variable, "left")) {
-        Serial.println("Left");
+    else if (!strcmp(variable, "right")) {
+        Serial.println("Right");
         digitalWrite(right_Forward, HIGH);
         digitalWrite(left_Back, HIGH);
         digitalWrite(left_Forward, LOW);
         digitalWrite(right_Back, LOW);
         return true;
     }
-    else if (!strcmp(variable, "right")) {
-        Serial.println("Right");
+    else if (!strcmp(variable, "left")) {
+        Serial.println("Left");
         digitalWrite(right_Forward, LOW);
         digitalWrite(left_Back, LOW);
         digitalWrite(left_Forward, HIGH);
