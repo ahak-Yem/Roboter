@@ -27,8 +27,8 @@ bool CameraManager::initCamera() {
     config.xclk_freq_hz = 20000000;
     config.pixel_format = PIXFORMAT_JPEG;
     if(psramFound()){
-    config.frame_size = FRAMESIZE_VGA;
-    config.jpeg_quality = 10;
+    config.frame_size = FRAMESIZE_UXGA;
+    config.jpeg_quality = 20;
     config.fb_count = 2;
   } else {
     config.frame_size = FRAMESIZE_SVGA;
@@ -42,7 +42,7 @@ bool CameraManager::initCamera() {
         return false;
     }
     //drop down frame size for higher initial frame rate
-    //sensor_t * s = esp_camera_sensor_get();
-    //s->set_framesize(s, FRAMESIZE_CIF);
+    sensor_t * s = esp_camera_sensor_get();
+    s->set_framesize(s, FRAMESIZE_VGA);
     return true;
 };
