@@ -45,6 +45,7 @@ void setup() {
         }
     }
 
+    //Start the server that will controll the car
     httpHandler.startServer();
 }
 
