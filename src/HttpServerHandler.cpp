@@ -3,11 +3,6 @@
 #include "Arduino.h"
 #include "soc/soc.h"
 #include "soc/rtc_cntl_reg.h"
-// #include <WiFi.h>
-// #include "img_converters.h"
-// #include "esp_timer.h"
-// #include "fb_gfx.h"
-
 
 //Constructor with a code to disable brownout detecting
 HttpServerHandler::HttpServerHandler()
