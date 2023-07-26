@@ -28,8 +28,8 @@ bool CameraManager::initCamera() {
     config.pixel_format = PIXFORMAT_JPEG;
     if(psramFound()){
     config.frame_size = FRAMESIZE_UXGA;
-    config.jpeg_quality = 20;
-    config.fb_count = 2;
+    config.jpeg_quality = 30;
+    config.fb_count = 3;
   } else {
     config.frame_size = FRAMESIZE_SVGA;
     config.jpeg_quality = 12;
