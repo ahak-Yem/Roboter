@@ -18,18 +18,6 @@ static const char* _STREAM_BOUNDARY = "\r\n--" PART_BOUNDARY "\r\n";
 static const char* _STREAM_PART = "Content-Type: image/jpeg\r\nContent-Length: %u\r\n\r\n";
 ra_filter_t HttpServerHandler::ra_filter;
 
-size_t HttpServerHandler::jpg_encode_stream(void * arg, size_t index, const void* data, size_t len){
-    jpg_chunking_t *j = (jpg_chunking_t *)arg;
-    if(!index){
-        j->len = 0;
-    }
-    if(httpd_resp_send_chunk(j->req, (const char *)data, len) != ESP_OK){
-        return 0;
-    }
-    j->len += len;
-    return len;
-}
-
 //A variable with HTML, CSS and JavaScript for frontpage style & actions capturing.
 static const char PROGMEM INDEX_HTML[] = R"rawliteral(
 <!DOCTYPE html>

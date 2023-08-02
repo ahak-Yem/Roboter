@@ -40,7 +40,6 @@ class HttpServerHandler{
     static esp_err_t indexHandler(httpd_req_t *req); //handles frontend
     static esp_err_t streamHandler(httpd_req_t *req); //handles stream
     static esp_err_t cmdHandler(httpd_req_t *req); //handles commands comming
-    static size_t jpg_encode_stream(void * arg, size_t index, const void* data, size_t len);
     static ra_filter_t * ra_filter_init(ra_filter_t * filter, size_t sample_size); 
     static int ra_filter_run(ra_filter_t * filter, int value);
 };
