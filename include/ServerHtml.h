@@ -127,6 +127,19 @@ static const char PROGMEM INDEX_HTML[] = R"rawliteral(
                         </div>
                     </td>
                 </tr>
+                <tr>
+                    <td colspan="3" align="center">
+                        <div class="circle-button" onclick="toggleLED('on');">
+                            LED On
+                        </div>
+                    </td>
+                    <td></td>
+                    <td colspan="3" align="center">
+                        <div class="circle-button" onclick="toggleLED('off');">
+                            LED Off
+                        </div>
+                    </td>
+                </tr>
             </table>
         </div>
     </div>
@@ -137,6 +150,12 @@ static const char PROGMEM INDEX_HTML[] = R"rawliteral(
             xhr.open("GET", "/action?go=" + x, true);
             xhr.send();
         }
+        function toggleLED(status) {
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "/action?led=" + status, true);
+            xhr.send();
+        }
+        
         window.onload = document.getElementById("photo").src = window.location.href.slice(0, -1) + ":81/stream";
     </script>
 </body>
