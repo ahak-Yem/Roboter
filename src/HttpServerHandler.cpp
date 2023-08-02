@@ -95,7 +95,7 @@ camera_fb_t * fb = NULL;
             ,(uint32_t)(_jpg_buf_len),
             (uint32_t)frame_time, 1000.0 / (uint32_t)frame_time,
             avg_frame_time, 1000.0 / avg_frame_time
-        );
+        );  //Remove this for a better serial monitor output. Used to analyze stream smoothness.
     }
 
     last_frame = 0;
