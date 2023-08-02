@@ -29,7 +29,7 @@ bool CameraManager::initCamera() {
     if(psramFound()){
     config.frame_size = FRAMESIZE_UXGA;
     config.jpeg_quality = 30;
-    config.fb_count = 5;
+    config.fb_count = 6;
   } else {
     config.frame_size = FRAMESIZE_SVGA;
     config.jpeg_quality = 12;
