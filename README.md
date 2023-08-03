@@ -1,4 +1,6 @@
-# Ninja Car
+![Ninja Auto Logo](https://i.ibb.co/zVn76wL/Ninja-Auto-Logo.png)
+
+# Ninja Auto
 ## Description
 **Ninja Car** is a robot car with an interactive project that allows you to control a robot car using a browser-based interface. The car is equipped with an ESP32-Cam microcontroller, which serves as the brain of the operation. You can drive the robot car remotely using the hosted interface webpage, turn the built in LED on/off, and it even streams live video from the built-in camera to the same server. 
 
