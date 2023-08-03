@@ -152,7 +152,7 @@ static const char PROGMEM INDEX_HTML[] = R"rawliteral(
         }
         function toggleLED(status) {
             var xhr = new XMLHttpRequest();
-            xhr.open("GET", "/action?led=" + status, true);
+            xhr.open("GET", "/led?led=" + status, true);
             xhr.send();
         }
         
