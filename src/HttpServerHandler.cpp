@@ -1,5 +1,4 @@
 #include "HttpServerHandler.h"
-#include "ServerHtml.h"
 
 //Constructor with a code to disable brownout detecting
 HttpServerHandler::HttpServerHandler()
@@ -7,9 +6,9 @@ HttpServerHandler::HttpServerHandler()
       WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0); //disable brownout detector
 }
 
-
 //A motorManager instance that is accessed in the cmd_handler to control the car
 MotorsManager HttpServerHandler::motorManager;
+CarLED HttpServerHandler::led;
 
 //Configurations for the stream
 #define PART_BOUNDARY "123456789000000000000987654321"
@@ -17,8 +16,6 @@ static const char* _STREAM_CONTENT_TYPE = "multipart/x-mixed-replace;boundary=" 
 static const char* _STREAM_BOUNDARY = "\r\n--" PART_BOUNDARY "\r\n";
 static const char* _STREAM_PART = "Content-Type: image/jpeg\r\nContent-Length: %u\r\n\r\n";
 ra_filter_t HttpServerHandler::ra_filter;
-
-
 
 //Handles the frontend that will open in main server
 esp_err_t HttpServerHandler::indexHandler(httpd_req_t *req)
@@ -148,6 +145,43 @@ if(!motorManager.controlCar(variable)){
   return httpd_resp_send(req, NULL, 0);
 }
 
+esp_err_t HttpServerHandler::ledHandler(httpd_req_t *req) {
+    char* buf;
+    size_t buf_len;
+    char variable[32] = {0,};
+    buf_len = httpd_req_get_url_query_len(req) + 1;
+    if (buf_len > 1) {
+        buf = (char*)malloc(buf_len);
+        if (!buf) {
+            httpd_resp_send_500(req);
+            return ESP_FAIL;
+        }
+        if (httpd_req_get_url_query_str(req, buf, buf_len) == ESP_OK) {
+            if (httpd_query_key_value(buf, "led", variable, sizeof(variable)) == ESP_OK) {
+                Serial.print("Received LED status: ");
+                Serial.println(variable);
+                led.setLED(variable);
+                free(buf);
+            } else {
+                free(buf);
+                httpd_resp_send_404(req);
+                return ESP_FAIL;
+            }
+        } else {
+            free(buf);
+            httpd_resp_send_404(req);
+            return ESP_FAIL;
+        }
+    } else {
+        httpd_resp_send_404(req);
+        return ESP_FAIL;
+    }
+
+    httpd_resp_set_hdr(req, "Access-Control-Allow-Origin", "*");
+    return httpd_resp_send(req, NULL, 0);
+}
+
+
 //Used to initialize a moving average filter to smooth out a stream of values.
 ra_filter_t *HttpServerHandler::ra_filter_init(ra_filter_t *filter, size_t sample_size)
 {
@@ -205,12 +239,18 @@ void HttpServerHandler::startServer()
     .handler   = streamHandler,
     .user_ctx  = NULL
   };
-  
+   httpd_uri_t led_uri = {
+        .uri       = "/led",
+        .method    = HTTP_GET,
+        .handler   = ledHandler,
+        .user_ctx  = NULL
+    };
   ra_filter_init(&ra_filter, 20);
   Serial.printf("Starting web server on port: '%d'", config.server_port);
   if (httpd_start(&cameraHttpd, &config) == ESP_OK) {
     httpd_register_uri_handler(cameraHttpd, &index_uri);
     httpd_register_uri_handler(cameraHttpd, &cmd_uri);
+    httpd_register_uri_handler(cameraHttpd, &led_uri);
   }
   config.server_port += 1;
   config.ctrl_port += 1;

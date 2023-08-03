@@ -9,7 +9,8 @@
 #include "soc/rtc_cntl_reg.h"
 #include "esp_timer.h"
 #include "img_converters.h"
-
+#include "CarLED.h"
+#include "ServerHtml.h"
 
 typedef struct {
         size_t size; //number of values used for filtering
@@ -24,8 +25,6 @@ typedef struct {
         size_t len;
 } jpg_chunking_t;
 
-
-
 class HttpServerHandler{
     public:
     HttpServerHandler();
@@ -36,12 +35,16 @@ class HttpServerHandler{
     httpd_handle_t streamHttpd = NULL; // Two servers for the stream and the html.
     static ra_filter_t ra_filter;
 
-    static MotorsManager motorManager;    
+    static MotorsManager motorManager; 
+    static CarLED led;
+
     static esp_err_t indexHandler(httpd_req_t *req); //handles frontend
     static esp_err_t streamHandler(httpd_req_t *req); //handles stream
-    static esp_err_t cmdHandler(httpd_req_t *req); //handles commands comming
+    static esp_err_t cmdHandler(httpd_req_t *req); //handles commands coming
+    static esp_err_t ledHandler(httpd_req_t *req); //handles coming led commands
+
     static ra_filter_t * ra_filter_init(ra_filter_t * filter, size_t sample_size); 
-    static int ra_filter_run(ra_filter_t * filter, int value);
+    static int ra_filter_run(ra_filter_t * filter, int value); //Moving average filter to smooth a stream of values
 };
 
 #endif
