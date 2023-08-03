@@ -47,13 +47,42 @@
 ## Configuration
 If you need to modify any settings or pin assignments, refer to the appropriate sections in the source code.
 
+## GPIO Pinout
+
+| Purpose                   | GPIO Pin |
+|---------------------------|----------|
+| Right Motors forward      | GPIO 13  |
+| Right Motors backward     | GPIO 15  |
+| Left Motors forward       | GPIO 14  |
+| Left Motors backward      | GPIO 2   |
+| LED                       | GPIO 4   |
+| PWDN (Camera)             | GPIO 32  |
+| RESET (Camera)            | GPIO -1  |
+| XCLK (Camera)             | GPIO 0   |
+| SIOD (Camera)             | GPIO 26  |
+| SIOC (Camera)             | GPIO 27  |
+| Y9 (Camera)               | GPIO 35  |
+| Y8 (Camera)               | GPIO 34  |
+| Y7 (Camera)               | GPIO 39  |
+| Y6 (Camera)               | GPIO 36  |
+| Y5 (Camera)               | GPIO 21  |
+| Y4 (Camera)               | GPIO 19  |
+| Y3 (Camera)               | GPIO 18  |
+| Y2 (Camera)               | GPIO 5   |
+| VSYNC (Camera)            | GPIO 25  |
+| HREF (Camera)             | GPIO 23  |
+| PCLK (Camera)             | GPIO 22  |
+
 ## Contact
 Email: ninja_auto_support@gmail.com
 
 ## Libraries
 - esp32-camera: [GitHub repository](https://github.com/espressif/esp32-camera)
 
-## Contributers
+## Extras
+- Our Qt Quick App to control the Robot Car: [Repository](https://gitlab.rz.htw-berlin.de/s0580976/ninjaauto_qtapp)
+
+## Contributors
 - Ahmed Kutbi
 - Ahmed Rassea
 - Heltonn Harold
@@ -64,3 +93,6 @@ Email: ninja_auto_support@gmail.com
 
 ## Conclusion
 Thank you for exploring our project. We hope you enjoy controlling the robot and watching its adventures through the live video stream. Have fun exploring and experimenting with the possibilities of this project!
+
+
+[![Robot-Picture](https://i.ibb.co/4gnZ6NB/Robot-Picture.jpg)](https://ibb.co/1JtfD2H)
