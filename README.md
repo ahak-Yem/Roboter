@@ -82,7 +82,7 @@ Email: ninja_auto_support@gmail.com
 - esp32-camera: [GitHub repository](https://github.com/espressif/esp32-camera)
 
 ## Extras
-- Our Qt Quick App to control the Robot Car: [[Repository](https://gitlab.rz.htw-berlin.de/s0580976/ninjaauto_qtapp)](Qt_Roboter_App)
+- Our Qt Quick App to control the Robot Car: [[Qt_Roboter_App](https://gitlab.rz.htw-berlin.de/s0580976/ninjaauto_qtapp)]
 
 ## Contributors
 - Ahmed Kutbi
